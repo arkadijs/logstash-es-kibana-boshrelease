@@ -1,0 +1,71 @@
+<%
+deployment_name = 'my-logstash'
+director_uuid = '93e4033e-5d86-423e-b41d-2704aecfc9c7'
+release = '1'
+security_groups = ['bosh', 'cf']
+subnet_id = 'subnet-12345'
+instances = 1
+%>
+---
+name: <%= deployment_name %>
+director_uuid	: '13099ccd-9dcb-4aa2-a9cc-6d6f16158fa1'
+
+releases:
+ - name: logstash-es-kibana
+   version: <%= release %>
+
+compilation:
+  workers: 1
+  network: private
+  reuse_compilation_vms: true
+  cloud_properties:
+    instance_type: m1.large
+
+update:
+  canaries: 0
+  canary_watch_time: 60000-120000
+  update_watch_time: 60000-120000
+  max_in_flight: 32
+  serial: false
+
+networks:
+- name: private
+  subnets:
+  - cloud_properties:
+      security_groups: <%= security_groups %>
+      subnet: <%= subnet_id %>
+    range: 10.0.1.0/24
+    gateway: 10.0.1.1
+    static:
+    - 10.0.1.10-10.0.1.21
+    reserved:
+    - 10.0.1.2-10.0.1.9
+    dns:
+    - 10.0.0.2
+
+resource_pools:
+  - name: medium
+    network: private
+    size: <%= instances %>
+    stemcell:
+      name: bosh-aws-xen-ubuntu
+      version: '2366'
+    cloud_properties:
+      instance_type: m1.medium
+
+jobs:
+  - name: kibana
+    templates:
+      - name: elasticsearch
+      - name: logstash
+      - name: kibana
+    instances: <%= instances %>
+    resource_pool: medium
+    persistent_disk: 8192
+    networks:
+      - name: private
+        default: [dns, gateway]
+
+properties:
+  elasticsearch:
+    port: 9200
