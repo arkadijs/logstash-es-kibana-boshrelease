@@ -4,4 +4,4 @@ blobs
 .blobs
 .dev_builds
 dev_releases
-config/dev.ym
+config/dev.yml
