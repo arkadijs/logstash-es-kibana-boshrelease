@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+pkg=kibana
+RUN_DIR=/var/vcap/sys/run/$pkg
+LOG_DIR=/var/vcap/sys/log/$pkg
+PIDFILE=${RUN_DIR}/pid
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR
+    chown -R vcap:vcap $RUN_DIR $LOG_DIR
+    cd /var/vcap/packages/$pkg
+    sed -i -e 's|^\s*elasticsearch:.*|    elasticsearch: "http://"+window.location.hostname+":<%= p('elasticsearch.port') %>",|' config.js
+   #sed -i -e 's|^\s*elasticsearch:.*|    elasticsearch: "http://<%= p('elasticsearch.host') %>:<%= p('elasticsearch.port') %>",|' config.js
+    exec /var/vcap/packages/lighttpd/sbin/lighttpd -D -f /var/vcap/jobs/kibana/config/lighttpd.conf
+    ;;
+
+  stop)
+    kill $(cat $PIDFILE)
+    rm -f $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: ctl {start|stop}" ;;
+
+esac

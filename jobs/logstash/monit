@@ -1,0 +1,6 @@
+check process logstash
+  with pidfile /var/vcap/sys/run/logstash/pid
+  depends on elasticsearch
+  start program "/var/vcap/jobs/logstash/bin/ctl start"
+  stop program "/var/vcap/jobs/logstash/bin/ctl stop"
+  group vcap

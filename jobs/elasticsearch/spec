@@ -1,0 +1,14 @@
+---
+name: elasticsearch
+templates:
+  bin/ctl.erb: bin/ctl
+  config/elasticsearch.yml: config/elasticsearch.yml
+
+packages:
+- elasticsearch
+- java
+
+properties:
+  elasticsearch.port:
+    description: Port to bind Elasticsearch server to
+    default: 9200

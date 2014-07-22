@@ -1,0 +1,4 @@
+set -e
+tar xzf elasticsearch/elasticsearch-1.1.2.tar.gz
+cd elasticsearch-1.1.2
+cp -a * $BOSH_INSTALL_TARGET

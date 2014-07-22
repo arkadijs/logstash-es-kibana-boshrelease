@@ -1,0 +1,11 @@
+---
+name: kibana
+templates:
+  bin/ctl.erb: bin/ctl
+  config/lighttpd.conf: config/lighttpd.conf
+
+packages:
+- kibana
+- lighttpd
+
+properties: {}

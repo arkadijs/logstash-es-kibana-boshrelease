@@ -1,0 +1,4 @@
+set -e
+tar xzf logstash/logstash-1.4.2.tar.gz
+cd logstash-1.4.2
+cp -a * $BOSH_INSTALL_TARGET

@@ -1,0 +1,17 @@
+---
+name: logstash
+templates:
+  bin/ctl.erb: bin/ctl
+  config/logstash.conf: config/logstash.conf
+
+packages:
+- logstash
+- java
+
+properties:
+  elasticsearch.host:
+    description: Host or IP to connect to Elasticsearch server
+    default: unused
+  elasticsearch.port:
+    description: Port to connect to Elasticsearch server
+    default: 9200

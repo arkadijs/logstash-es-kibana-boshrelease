@@ -1,0 +1,88 @@
+<%
+director_uuid = '93e4033e-5d86-423e-b41d-2704aecfc9c7'
+deployment_name = 'logstash-es-kibana'
+release = '0.17-dev'
+ip = '' # unused
+%>
+---
+name: <%= deployment_name %>
+director_uuid: <%= director_uuid %>
+
+releases:
+ - name: logstash-es-kibana
+   version: <%= release %>
+
+compilation:
+  workers: 1
+  network: compilation
+  reuse_compilation_vms: true
+  cloud_properties:
+    instance_type: n1-highcpu-2
+
+update:
+  canaries: 0
+  canary_watch_time: 60000-120000
+  update_watch_time: 60000-120000
+  max_in_flight: 32
+  serial: false
+
+networks:
+  - name: compilation
+    type: dynamic
+    cloud_properties:
+      tags:
+        - bosh
+        - compilation
+
+  - name: ephemeral
+    type: dynamic
+    cloud_properties:
+      ephemeral_external_ip: true
+      tags:
+        - bosh
+        - <%= deployment_name %>
+
+  - name: loadbalancer
+    type: dynamic
+    cloud_properties:
+      ephemeral_external_ip: true
+      target_pool: <%= deployment_name %>
+      tags:
+        - bosh
+        - <%= deployment_name %>
+
+  - name: static
+    type: vip
+    cloud_properties:
+      tags:
+        - bosh
+        - <%= deployment_name %>
+
+resource_pools:
+  - name: small
+    network: ephemeral
+    size: 1
+    stemcell:
+      name: bosh-google-kvm-ubuntu-trusty
+      version: latest
+    cloud_properties:
+      instance_type: n1-standard-1 # f1-micro g1-small
+      zone: europe-west1-a
+
+jobs:
+  - name: kibana
+    templates:
+      - name: elasticsearch
+      - name: logstash
+      - name: kibana
+    instances: 1
+    resource_pool: small
+    persistent_disk: 8192
+    networks:
+      - name: ephemeral
+        default: [dns, gateway]
+
+properties:
+  elasticsearch:
+   #host: <%= ip %>
+    port: 9200

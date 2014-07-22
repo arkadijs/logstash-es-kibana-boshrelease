@@ -1,0 +1,6 @@
+script.disable_dynamic: true
+http.port: <%= p('elasticsearch.port') %>
+path.data: /var/vcap/store/elasticsearch/data
+path.logs: /var/vcap/sys/log/elasticsearch
+# path.work:
+# path.plugins:

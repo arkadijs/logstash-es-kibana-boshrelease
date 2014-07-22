@@ -1,0 +1,7 @@
+---
+name: elasticsearch
+
+dependencies:
+
+files:
+- elasticsearch/elasticsearch-1.1.2.tar.gz    # https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.2.tar.gz

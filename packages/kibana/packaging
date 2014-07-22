@@ -1,0 +1,5 @@
+set -e
+tar xzf kibana/kibana-3.1.0.tar.gz
+cd kibana-3.1.0
+cp -f app/dashboards/logstash.json app/dashboards/default.json
+cp -a * $BOSH_INSTALL_TARGET

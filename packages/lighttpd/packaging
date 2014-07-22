@@ -1,0 +1,6 @@
+set -e
+tar xjf lighttpd/lighttpd-1.4.35.tar.bz2
+cd lighttpd-1.4.35
+./configure --with-openssl --without-pcre --prefix=$BOSH_INSTALL_TARGET
+make -j4
+make install

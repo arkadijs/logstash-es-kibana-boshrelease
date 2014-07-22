@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -e
+pkg=elasticsearch
+RUN_DIR=/var/vcap/sys/run/$pkg
+LOG_DIR=/var/vcap/sys/log/$pkg
+DATA_DIR=/var/vcap/store/$pkg
+PIDFILE=${RUN_DIR}/pid
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR $DATA_DIR
+    chown -R vcap:vcap $RUN_DIR $LOG_DIR $DATA_DIR
+    export JAVA_HOME=/var/vcap/packages/java
+    export PATH=$JAVA_HOME/bin:$PATH
+    echo $$ >$PIDFILE
+    exec chpst -u vcap:vcap /var/vcap/packages/$pkg/bin/elasticsearch --path.conf=/var/vcap/jobs/$pkg/config
+    ;;
+
+  stop)
+    kill $(cat $PIDFILE)
+    rm -f $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: ctl {start|stop}" ;;
+
+esac

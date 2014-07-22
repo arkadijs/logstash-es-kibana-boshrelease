@@ -1,0 +1,4 @@
+set -e
+tar xzf java/jre-7u65-linux-x64.tar.gz
+cd jre1.7.0_65
+cp -a * $BOSH_INSTALL_TARGET

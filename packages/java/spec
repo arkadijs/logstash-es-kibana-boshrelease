@@ -1,0 +1,7 @@
+---
+name: java
+
+dependencies:
+
+files:
+- java/jre-7u65-linux-x64.tar.gz    # http://www.oracle.com/technetwork/java/javase/downloads
