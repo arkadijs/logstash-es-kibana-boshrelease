@@ -3,5 +3,6 @@ _archives
 blobs
 .blobs
 .dev_builds
+.final_builds
 dev_releases
 config/dev.yml
