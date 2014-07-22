@@ -1,6 +1,6 @@
 ---
 blobstore:
   s3:
-    bucket_name: logstash-es-kibana-boshrelease
+    bucket_name: logstash-es-kibana-boshrelease-us-east-1
     access_key_id: A-------------------
     secret_access_key: Q---------------------------------------
