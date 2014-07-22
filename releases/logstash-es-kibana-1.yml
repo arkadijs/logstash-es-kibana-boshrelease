@@ -1,0 +1,60 @@
+---
+packages:
+- name: lighttpd
+  version: 1
+  sha1: !binary |-
+    MjBiNmRkZjQ1Njg3Y2RiZDE2MGQwMDgwY2Q0ZmZmM2JjNDg2ZWU3Zg==
+  fingerprint: !binary |-
+    MDNjNzhiMmIzNGJhMDk3Y2Y0ZTlhMDY1MjlkMWE1NjI2OGUyMmYzNQ==
+  dependencies: []
+- name: elasticsearch
+  version: 1
+  sha1: !binary |-
+    MzkzMTk1ZmYwYTgzNDA0ZWFmNzlhMWU2YTY1MGM1ZDMyMmM5Y2JjNg==
+  fingerprint: !binary |-
+    ZjBlNzM5ZmM2NzcyMmIyODI3ZjljM2Y0YjhkNmQyODQ0ZTQ3ZDA4NA==
+  dependencies: []
+- name: kibana
+  version: 1
+  sha1: !binary |-
+    YmY0NzNjY2UyZTUxNTc0MmQ4M2Q2MmEyNGI2ZGVlYzllNWNhNjVjZA==
+  fingerprint: !binary |-
+    YzVmMmFlMDU4M2Q5OTY4NjFjNzk0MzA3ZTczNTZmYjlhYTNmYWE3ZA==
+  dependencies: []
+- name: logstash
+  version: 1
+  sha1: !binary |-
+    NDM5YTNiMTZmZWI2NzdhZWVlZWQzMzg3NTFjMWIzZDA3ZjJjNjVmMQ==
+  fingerprint: !binary |-
+    MDRlZGQxYjZiOTM1YzBjMzdjOWI4NDgxNDk3NjA3OGJmYjgyMGIyMA==
+  dependencies: []
+- name: java
+  version: 1
+  sha1: !binary |-
+    MDQwN2M2NjMzMjA1NWYzNzhiNGMwNDgzMDYwZTk4MTM5YTM5M2Q2MA==
+  fingerprint: !binary |-
+    NDRlZDQwOGIzZTk5MTQ3ZTM3YzNmYWJhOWIxYzYyZDkwYjlhNzUyYw==
+  dependencies: []
+jobs:
+- name: elasticsearch
+  version: 1
+  fingerprint: !binary |-
+    NGNiZTViYjVkOTk5ZjUxNzc5MmQxZDJiMGU2NjhjNDM0YzBmMWMwOA==
+  sha1: !binary |-
+    OTdlMTlkYzMzYWY0Yzk5YmM0YTRjMmQzYWZhMjZiYzdkODlhNDdiMw==
+- name: kibana
+  version: 1
+  fingerprint: !binary |-
+    MTIzNTY0NzNhMTNjMzk1OWNkNzQ5NGE3YThiYzBmNWJlM2RjZWRhOA==
+  sha1: !binary |-
+    OGM1Mjc2N2M0OWZhMTRmZTQyOWYxNzQxM2VkNTAzNmU0ZGI4YzY2MQ==
+- name: logstash
+  version: 1
+  fingerprint: !binary |-
+    ODQxYmYwNWQ1MTZmODMzM2FkYzU4ZWFmMzgxYmU3YmE5NzdjODYzYQ==
+  sha1: !binary |-
+    YTc0MDAzY2FmNDNmNzYyMzA2ZDMyYmZlN2ZlN2JjNmJmZTE3OTU5MQ==
+commit_hash: e13ff673
+uncommitted_changes: true
+name: logstash-es-kibana
+version: 1
